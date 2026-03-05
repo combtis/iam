@@ -20,8 +20,9 @@ var (
 
 type (
 	OpenIDConfig struct {
-		Endpoint  string `json:"endpoint"`
-		PublicKey []byte `json:"public_key"`
+		Endpoint    string `json:"endpoint"`
+		PublicKey   []byte `json:"public_key"`
+		RedirectUrl string `json:"redirect_url"`
 	}
 )
 
