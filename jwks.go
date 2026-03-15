@@ -102,3 +102,15 @@ func (jwks *JWKS) InsertPrivateKey(priv ed.PrivateKey) {
 	}
 	jwks.Keys = append(jwks.Keys, key)
 }
+
+func (jwks *JWKS) HandleJWKSJson(rw http.ResponseWriter, req *http.Request) {
+	bs, err := json.MarshalIndent(jwks, "", "  ")
+	if err != nil {
+		http.Error(rw, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	rw.Header()["Pragma"] = []string{"no-cache"}
+	rw.Header()["Cache-Control"] = []string{"no-cache, no-store, must-revalidate, max-age=-1"}
+	rw.WriteHeader(http.StatusOK)
+	rw.Write(bs)
+}
