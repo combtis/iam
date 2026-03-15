@@ -111,6 +111,7 @@ func (jwks *JWKS) HandleJWKSJson(rw http.ResponseWriter, req *http.Request) {
 	}
 	rw.Header()["Pragma"] = []string{"no-cache"}
 	rw.Header()["Cache-Control"] = []string{"no-cache, no-store, must-revalidate, max-age=-1"}
+	rw.Header()["Content-Type"] = []string{"application/json"}
 	rw.WriteHeader(http.StatusOK)
 	rw.Write(bs)
 }
