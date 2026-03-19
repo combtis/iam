@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Business Techologies
+// SPDX-License-Identifier: MIT
 package iam
 
 import (

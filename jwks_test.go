@@ -1,5 +1,5 @@
 // Copyright (c) 2026 Business Technologies
-// SDPX-Licencse-Identifier: MIT
+// SDPX-License-Identifier: MIT
 package iam
 
 import (

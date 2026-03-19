@@ -1,5 +1,5 @@
 // Copyright (c) 2026 Business Techologies
-// SPDX-Licencse-Identifier: MIT
+// SPDX-License-Identifier: MIT
 package iam
 
 const (
