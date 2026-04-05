@@ -20,5 +20,5 @@ func NewJWK() *JWK {
 }
 
 func (jwk *JWK) SetKid(ts time.Time) {
-	jwk.Kid = ts.Format("20060102150405")
+	jwk.Kid = ts.Format("2006-01-02T15:04:05Z-0700")
 }
