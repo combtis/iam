@@ -19,6 +19,10 @@ func NewJWK() *JWK {
 	return jwk
 }
 
+func (jwk *JWK) Now() {
+	jwk.SetKid(time.Now())
+}
+
 func (jwk *JWK) SetKid(ts time.Time) {
 	jwk.Kid = ts.Format("2006-01-02T15:04:05Z-0700")
 }
