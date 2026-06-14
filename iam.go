@@ -14,10 +14,6 @@ import (
 	"os"
 )
 
-var (
-	site = os.Getenv("IAM_SITE")
-)
-
 type (
 	OpenIDConfig struct {
 		Endpoint    string `json:"endpoint"`
@@ -76,7 +72,7 @@ func OpenIDConfiguration(rw http.ResponseWriter, req *http.Request) {
 		http.Error(rw, http.StatusText(code), code)
 	}
 
-	if site == "" {
+	if site() == "" {
 		code = http.StatusInternalServerError
 		http.Error(rw, http.StatusText(code), code)
 		return
@@ -84,6 +80,10 @@ func OpenIDConfiguration(rw http.ResponseWriter, req *http.Request) {
 
 	rw.WriteHeader(code)
 	rw.Write([]byte(`# test: not prod
-endpoint: http://` + site + `/auth/admin
+endpoint: http://` + site() + `/auth/admin
 `))
+}
+
+func site() string {
+	return os.Getenv("IAM_SITE")
 }
