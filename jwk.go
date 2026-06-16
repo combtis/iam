@@ -8,8 +8,12 @@ import (
 
 type (
 	JWK struct {
-		Kty string `json:"kty,omitempty"`
-		Kid string `json:"kid,omitempty"`
+		Kty string `json:"kty,omitempty"` // type
+		Use string `json:"use,omitempty"` // use?
+		Alg string `json:"alg,omitempty"` // algoritmh
+		Kid string `json:"kid,omitempty"` // key id
+		Crv string `json:"crv,omitempty"` // curve
+		X   string `json:"x,omitempty"`   // .
 	}
 )
 

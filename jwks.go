@@ -18,22 +18,13 @@ import (
 
 type (
 	JWKS struct {
-		Keys []Key `json:"keys"`
-	}
-
-	Key struct {
-		Kty string `json:"kty,omitempty"` // type
-		Use string `json:"use,omitempty"` // use?
-		Alg string `json:"alg,omitempty"` // algoritmh
-		Kid string `json:"kid,omitempty"` // key id
-		Crv string `json:"crv,omitempty"` // curve
-		X   string `json:"x,omitempty"`   // .
+		Keys []*JWK `json:"keys"`
 	}
 )
 
 func NewJWKS() *JWKS {
 	jwks := &JWKS{
-		Keys: []Key{},
+		Keys: []*JWK{},
 	}
 	_ = http.DefaultClient
 	_ = big.Int{}
@@ -68,7 +59,7 @@ func (jwks *JWKS) Load(filename string) error {
 	}
 	pub := (priv).(ed.PrivateKey).Public().(ed.PublicKey)
 
-	jwks.Keys = append(jwks.Keys, Key{
+	jwks.Keys = append(jwks.Keys, &JWK{
 		Kty: "OKP",
 		Use: "sig",
 		Alg: "EdDSA",
@@ -93,7 +84,7 @@ func (jwks *JWKS) InsertPrivateKey(priv ed.PrivateKey) {
 	if !ok {
 		return
 	}
-	key := Key{
+	key := &JWK{
 		Kty: "OKP",
 		Use: "sig",
 		Alg: "EdDSA",
