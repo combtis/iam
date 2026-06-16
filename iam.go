@@ -85,5 +85,9 @@ endpoint: http://` + site() + `/auth/admin
 }
 
 func site() string {
-	return os.Getenv("IAM_SITE")
+	site, exists := os.LookupEnv("IAM_SITE")
+	if !exists || site == "" {
+		panic("IAM_SITE environment variable is missing or empty")
+	}
+	return site
 }
