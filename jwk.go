@@ -9,7 +9,7 @@ import (
 type (
 	JWK struct {
 		Kty string `json:"kty,omitempty"` // type
-		Use string `json:"use,omitempty"` // use?
+		Use string `json:"use,omitempty"` // use: jwt, etc...
 		Alg string `json:"alg,omitempty"` // algoritmh
 		Kid string `json:"kid,omitempty"` // key id
 		Crv string `json:"crv,omitempty"` // curve
